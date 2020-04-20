@@ -1,3 +1,3 @@
 
-#include "config.h"
+#include "../../config.h"
 #include "../onigmo.h"
