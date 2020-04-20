@@ -25,7 +25,6 @@ let package = Package(
             cSettings: [
                     .headerSearchPath("."),
                     .headerSearchPath(".."),
-                    .unsafeFlags(["-fno-objc-arc"]),
             ]
         ),
         .target(

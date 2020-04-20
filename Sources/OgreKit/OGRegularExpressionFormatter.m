@@ -41,8 +41,8 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
     }
 	
 	//NSLog(@"stringForObjectValue \"%@\"", [anObject expressionString]); 
-	return [[[NSAttributedString alloc] initWithString: [anObject expressionString] 
-		attributes: attributes] autorelease];
+	return [[NSAttributedString alloc] initWithString: [anObject expressionString]
+		attributes: attributes];
 }
 
 - (NSString*)editingStringForObjectValue:(id)anObject
@@ -136,14 +136,14 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 
     if (allowsKeyedCoding) {
 		// NSString			*_escapeCharacter;
-		_escapeCharacter = [[decoder decodeObjectForKey: OgreEscapeCharacterKey] retain];
+		_escapeCharacter = [decoder decodeObjectForKey: OgreEscapeCharacterKey];
 	} else {
 		// NSString			*_escapeCharacter;
-		_escapeCharacter = [[decoder decodeObject] retain];
+		_escapeCharacter = [decoder decodeObject];
 	}
 	if(_escapeCharacter == nil) {
 		// エラー。例外を発生させる。
-		[self release];
+		self = nil;
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 
@@ -155,7 +155,7 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 	}
 	if(anObject == nil) {
 		// エラー。例外を発生させる。
-		[self release];
+		self = nil;
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_options = [anObject intValue];
@@ -169,13 +169,13 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 	}
 	if(anObject == nil) {
 		// エラー。例外を発生させる。
-		[self release];
+		self = nil;
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	syntaxType = [anObject integerValue];
 	if (syntaxType == -1) {
 		// エラー。例外を発生させる。
-		[self release];
+		self = nil;
 		[NSException raise:NSInvalidUnarchiveOperationException format:@"fail to decode"];
 	}
 	_syntax = [OGRegularExpression syntaxForIntValue:syntaxType];
@@ -209,7 +209,7 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 	if (self) {
 		_options = options;
 		_syntax = syntax;
-		_escapeCharacter = [character retain];
+		_escapeCharacter = character;
 	}
 	
 	return self;
@@ -220,8 +220,6 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 #ifdef DEBUG_OGRE
 	NSLog(@"-dealloc of %@", [self className]);
 #endif
-	[_escapeCharacter release];
-	[super dealloc];
 }
 
 - (NSString*)escapeCharacter
@@ -231,7 +229,6 @@ NSString	* const OgreFormatterException = @"OGRegularExpressionFormatterExceptio
 
 - (void)setEscapeCharacter:(NSString*)character
 {
-	[_escapeCharacter autorelease];
 	_escapeCharacter = [character copy];
 }
 

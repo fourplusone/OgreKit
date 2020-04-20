@@ -59,7 +59,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 {
 	self = [super init];
 	if (self != nil) {
-		[self _setAttributedString:[[[NSMutableAttributedString alloc] init] autorelease]];
+		[self _setAttributedString:[[NSMutableAttributedString alloc] init]];
 #if TARGET_OS_OSX
 		_fontManager = [NSFontManager sharedFontManager];
 #endif
@@ -70,13 +70,13 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 - (id)initWithAttributedString:(NSAttributedString*)attributedString
 {
 	if (attributedString == nil) {
-		[super release];
+		self = nil;;
 		[NSException raise:NSInvalidArgumentException format: @"nil string argument"];
 	}
 	
 	self = [super init];
 	if (self != nil) {
-		[self _setAttributedString:[[[NSMutableAttributedString alloc] initWithAttributedString:attributedString] autorelease]];
+		[self _setAttributedString:[[NSMutableAttributedString alloc] initWithAttributedString:attributedString]];
 #if TARGET_OS_OSX
 		_fontManager = [NSFontManager sharedFontManager];
 #endif
@@ -87,14 +87,14 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 - (id)initWithString:(NSString*)string hasAttributesOfOGString:(NSObject<OGStringProtocol>*)ogString
 {
 	if (string == nil || ogString == nil) {
-		[super release];
+		self = nil;;
 		[NSException raise:NSInvalidArgumentException format: @"nil string argument"];
 	}
 	
 	self = [super init];
 	if (self != nil) {
-		[self _setAttributedString:[[[NSAttributedString alloc] initWithString:string 
-			attributes:[[ogString attributedString] attributesAtIndex:0 effectiveRange:NULL]] autorelease]];
+		[self _setAttributedString:[[NSAttributedString alloc] initWithString:string
+			attributes:[[ogString attributedString] attributesAtIndex:0 effectiveRange:NULL]]];
 #if TARGET_OS_OSX
 		_fontManager = [NSFontManager sharedFontManager];
 #endif
@@ -102,12 +102,6 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	return self;
 }
 
-- (void)dealloc
-{
-	[_currentFontFamilyName release];
-	[_currentAttributes release];
-	[super dealloc];
-}
 
 /* OGMutableStringProtocol */
 - (void)appendOGString:(NSObject<OGStringProtocol>*)string
@@ -129,8 +123,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	
 	NSAttributedString	*appendant = [string attributedString];
 	[(NSMutableAttributedString*)[self _attributedString] appendAttributedString:appendant];
-	[_currentAttributes autorelease];
-	_currentAttributes = [[appendant attributesAtIndex:(length - 1) effectiveRange:NULL] retain];
+	_currentAttributes = [appendant attributesAtIndex:(length - 1) effectiveRange:NULL];
 }
 
 - (void)appendString:(NSString*)string 
@@ -139,7 +132,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 		return;
 	}
 	
-	[(NSMutableAttributedString*)[self _attributedString] appendAttributedString:[[[NSAttributedString alloc] initWithString:string attributes:_currentAttributes] autorelease]];
+	[(NSMutableAttributedString*)[self _attributedString] appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:_currentAttributes]];
 }
 
 - (void)appendString:(NSString*)string hasAttributesOfOGString:(NSObject<OGStringProtocol>*)ogString
@@ -148,7 +141,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 		return;
 	}
 	
-	[(NSMutableAttributedString*)[self _attributedString] appendAttributedString:[[[NSAttributedString alloc] initWithString:string attributes:[[ogString attributedString] attributesAtIndex:0 effectiveRange:NULL]] autorelease]];
+	[(NSMutableAttributedString*)[self _attributedString] appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:[[ogString attributedString] attributesAtIndex:0 effectiveRange:NULL]]];
 }
 
 - (void)appendOGString:(NSObject<OGStringProtocol>*)string 
@@ -160,12 +153,12 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 		return;
 	}
 	
-	NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
+	
 	
 	NSAttributedString			*appendant = [string attributedString];
 	NSMutableAttributedString	*attrString = (NSMutableAttributedString*)[self _attributedString];
 	
-	NSMutableAttributedString	*aString = [[[NSMutableAttributedString alloc] initWithAttributedString:appendant] autorelease];
+	NSMutableAttributedString	*aString = [[NSMutableAttributedString alloc] initWithAttributedString:appendant];
 	NSUInteger		length = [appendant length];
 	NSRange			effectiveRange = NSMakeRange(0, 0);
 #if APPKIT
@@ -210,8 +203,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	if (!mergeAttributes) {
 		// replace attributes
 		[aString setAttributes:srcAttributes range:NSMakeRange(0, length)];
-		[_currentAttributes autorelease];
-		_currentAttributes = [srcAttributes retain];
+		_currentAttributes = srcAttributes;
 	} else {
 		// merge attributes
 		NSEnumerator	*keyEnumerator = [srcAttributes keyEnumerator];
@@ -224,8 +216,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 					range:NSMakeRange(0, length)];
 			//}
 		}
-		[_currentAttributes autorelease];
-		_currentAttributes = [[aString attributesAtIndex:(length - 1) effectiveRange:NULL] retain];
+		_currentAttributes = [aString attributesAtIndex:(length - 1) effectiveRange:NULL];
 	}
 	
 	while (effectiveRange.location < length) {
@@ -319,14 +310,12 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	}
 	
 	if (changeFont) {
-		[_currentFontFamilyName autorelease];
-		_currentFontFamilyName = [srcFontFamilyName retain];
+		_currentFontFamilyName = srcFontFamilyName;
 		_currentFontTraits = newFontTraits;
 		_currentFontWeight = srcFontWeight;
 		_currentFontPointSize = srcFontPointSize;
 	} else if (appendantFontFamilyName != nil) {
-		[_currentFontFamilyName autorelease];
-		_currentFontFamilyName = [appendantFontFamilyName retain];
+		_currentFontFamilyName = appendantFontFamilyName;
 		_currentFontTraits = newFontTraits;
 		_currentFontWeight = appendantFontWeight;
 		_currentFontPointSize = appendantFontPointSize;
@@ -334,7 +323,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	
 	[attrString appendAttributedString:aString];
 	
-	[pool release];
+	
 }
 
 - (void)appendOGString:(NSObject<OGStringProtocol>*)string 
@@ -345,12 +334,12 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 		return;
 	}
 	
-	NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
+	
 	
 	NSAttributedString			*appendant = [string attributedString];
 	NSMutableAttributedString	*attrString = (NSMutableAttributedString*)[self _attributedString];
 	
-	NSMutableAttributedString	*aString = [[[NSMutableAttributedString alloc] initWithAttributedString:appendant] autorelease];
+	NSMutableAttributedString	*aString = [[NSMutableAttributedString alloc] initWithAttributedString:appendant];
 	NSRange			effectiveRange;
 	NSUInteger		length = [appendant length];
 	NSString		*appendantFontFamilyName = nil;
@@ -388,8 +377,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 			}
 			effectiveRange.location = NSMaxRange(effectiveRange);
 		}
-		[_currentAttributes autorelease];
-		_currentAttributes = [[aString attributesAtIndex:(length - 1) effectiveRange:NULL] retain];
+		_currentAttributes = [aString attributesAtIndex:(length - 1) effectiveRange:NULL];
 	}
 	
 	effectiveRange = NSMakeRange(0, 0);
@@ -482,8 +470,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	}
 	
 	if (changeFont && _currentFontFamilyName != nil) {
-		[_currentFontFamilyName autorelease];
-		_currentFontFamilyName = [appendantFontFamilyName retain];
+		_currentFontFamilyName = appendantFontFamilyName;
 		_currentFontTraits = newFontTraits;
 		_currentFontWeight = appendantFontWeight;
 		_currentFontPointSize = appendantFontPointSize;
@@ -491,7 +478,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	
 	[attrString appendAttributedString:aString];
 	
-	[pool release];
+	
 }
 
 - (void)setAttributesOfOGString:(NSObject<OGStringProtocol>*)string atIndex:(NSUInteger)index
@@ -512,7 +499,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 	if (attrIndex < [string length]) {
 		attrString = [string attributedString];
 	} else {
-		attrString = [[[NSAttributedString alloc] initWithString:@" "] autorelease];
+		attrString = [[NSAttributedString alloc] initWithString:@" "];
 	}
 	
 	font = [attrString attribute:NSFontAttributeName atIndex:attrIndex effectiveRange:nil];
@@ -523,8 +510,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
         font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
 #endif
 	}
-	[_currentFontFamilyName autorelease];
-	_currentFontFamilyName = [[font familyName] retain];
+	_currentFontFamilyName = [font familyName];
 
 #if APPKIT
     _currentFontTraits = [_fontManager traitsOfFont:font];
@@ -535,8 +521,7 @@ static UIFontDescriptorSymbolicTraits NSExpandedFontMask = UIFontDescriptorTrait
 #endif
 	_currentFontPointSize = [font pointSize];
 	
-	[_currentAttributes autorelease];
-	_currentAttributes = [[attrString attributesAtIndex:attrIndex effectiveRange:NULL] retain];
+	_currentAttributes = [attrString attributesAtIndex:attrIndex effectiveRange:NULL];
 }
 
 @end

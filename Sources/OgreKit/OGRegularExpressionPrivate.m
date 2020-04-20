@@ -42,21 +42,11 @@ OnigSyntaxType  OgrePrivateRubySyntax;
 #ifdef DEBUG_OGRE
 	NSLog(@"-dealloc of %@", [self className]);
 #endif
-	// named group(逆引き)辞書
-	[_groupIndexForNameDictionary release];
-	[_nameForGroupIndexArray release];
-	
 	// 鬼車正規表現オブジェクト
 	if (_regexBuffer != NULL) onig_free(_regexBuffer);
 	
 	// 正規表現を表す文字列
-    NSZoneFree([self zone], _UTF16ExpressionString);
-	[_expressionString release];
-	
-	// \の代替文字
-	[_escapeCharacter release];
-	
-	[super dealloc];
+    free(_UTF16ExpressionString);
 }
 
 // oniguruma regular expression buffer
@@ -104,10 +94,10 @@ OnigSyntaxType  OgrePrivateRubySyntax;
 		[OgreBackslashCharacter stringByAppendingString:character]];
 	
 	NSObject<OGStringProtocol,OGMutableStringProtocol>	*resultString;
-	resultString = [[[[string mutableClass] alloc] init] autorelease];
+	resultString = [[[string mutableClass] alloc] init];
 	
 	unsigned			counterOfAutorelease = 0;
-	NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
+	
 	
     while ( (void)(matchRange = [plainString rangeOfCharacterFromSet:swapCharSet options:0 range:scanRange]),
 			matchRange.length > 0 ) {
@@ -134,13 +124,13 @@ OnigSyntaxType  OgrePrivateRubySyntax;
 		
 		counterOfAutorelease++;
 		if (counterOfAutorelease % 100 == 0) {
-			[pool release];
-			pool = [[NSAutoreleasePool alloc] init];
+			
+			
 		}
 	}
 	[resultString appendOGString:[string substringWithRange:NSMakeRange(scanRange.location, scanRange.length)]];
 	
-	[pool release];
+	
 	
 	//NSLog(@"%@", resultString);
 	return resultString;
@@ -191,7 +181,7 @@ OnigSyntaxType  OgrePrivateRubySyntax;
 	NSCharacterSet	*whitespaceCharacterSet = [NSCharacterSet whitespaceCharacterSet];
 	
 	unsigned	counterOfAutorelease = 0;
-	NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
+	
 
 	while (![scanner isAtEnd]) {
         if ([scanner scanUpToCharactersFromSet:whitespaceCharacterSet intoString:&scannedName]) {
@@ -207,12 +197,12 @@ OnigSyntaxType  OgrePrivateRubySyntax;
 		
 		counterOfAutorelease++;
 		if (counterOfAutorelease % 100 == 0) {
-			[pool release];
-			pool = [[NSAutoreleasePool alloc] init];
+			
+			
 		}
     }
 	
-	[pool release];
+	
 	
 	//NSLog(@"%@", expressionString);
 	return expressionString;

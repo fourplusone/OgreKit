@@ -36,7 +36,7 @@
 		_region = region;	// retain
 	
 		// 生成主
-		_enumerator = [enumerator retain];
+		_enumerator = enumerator;
 		
 		// 最後にマッチした文字列の終端位置
 		_terminalOfLastMatch = terminalOfLastMatch;
@@ -60,13 +60,9 @@
 #ifdef DEBUG_OGRE
 	NSLog(@"-dealloc of %@", [self className]);
 #endif
-	[_enumerator release];
-
 	if (_region != NULL) {
 		onig_region_free(_region, 1 /* free self */);
 	}
-	
-	[super dealloc];
 }
 
 - (NSObject<OGStringProtocol>*)_targetString
