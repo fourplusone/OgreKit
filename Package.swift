@@ -22,6 +22,7 @@ let package = Package(
         .target(
             name: "OgreKit",
             dependencies: ["onigmo"],
+            publicHeadersPath:".",
             cSettings: [
                     .headerSearchPath("."),
                     .headerSearchPath(".."),
