@@ -77,19 +77,28 @@
 #define PACKAGE_VERSION "6.2.0"
 
 /* The size of `int', as computed by sizeof. */
-// #define SIZEOF_INT sizeof(int)
+#define SIZEOF_INT 4
 
 /* The size of `long', as computed by sizeof. */
-// #define SIZEOF_LONG sizeof(long)
+#if __LP64__
+#define SIZEOF_LONG 8
+#else
+#define SIZEOF_LONG 4
+#endif
 
 /* The size of `long long', as computed by sizeof. */
-//#define SIZEOF_LONG_LONG (sizeof long long)
+#define SIZEOF_LONG_LONG 8
 
 /* The size of `short', as computed by sizeof. */
-// #define SIZEOF_SHORT sizeof(short)
+#define SIZEOF_SHORT 2
 
 /* The size of `void*', as computed by sizeof. */
-// #define SIZEOF_VOIDP sizeof(void *)
+#if __LP64__
+#define SIZEOF_VOIDP 8
+#else
+#define SIZEOF_VOIDP 4
+#endif
+
 
 /* If using the C implementation of alloca, define if you know the
    direction of stack growth for your system; otherwise it will be

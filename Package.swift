@@ -3,7 +3,6 @@
 
 import PackageDescription
 
-
 let package = Package(
     name: "OgreKit",
     products: [
@@ -37,11 +36,6 @@ let package = Package(
                 .headerSearchPath("."),
                 .headerSearchPath(".."),
                 .headerSearchPath("enc/unicode"),
-                .define("SIZEOF_INT", to: String(MemoryLayout<CInt>.size)),
-                .define("SIZEOF_LONG_LONG", to: String(MemoryLayout<CLongLong>.size)),
-                .define("SIZEOF_LONG", to: String(MemoryLayout<CLong>.size)),
-                .define("SIZEOF_SHORT", to: String(MemoryLayout<CShort>.size)),
-                .define("SIZEOF_VOIDP", to: String(MemoryLayout<UnsafeRawPointer>.size))
         ]),
     ]
 )
