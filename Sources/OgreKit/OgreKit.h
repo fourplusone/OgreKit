@@ -22,12 +22,12 @@
 #import <onigmo.h>
 
 /* Regular Expressions */
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGRegularExpressionEnumerator.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGRegularExpressionCapture.h>
-#import <OgreKit/OGRegularExpressionFormatter.h>
-#import <OgreKit/OGReplaceExpression.h>
-#import <OgreKit/NSString_OgreKitAdditions.h>
-#import <OgreKit/OGString.h>
-#import <OgreKit/OGMutableString.h>
+#import "OGRegularExpression.h"
+#import "OGRegularExpressionEnumerator.h"
+#import "OGRegularExpressionMatch.h"
+#import "OGRegularExpressionCapture.h"
+#import "OGRegularExpressionFormatter.h"
+#import "OGReplaceExpression.h"
+#import "NSString_OgreKitAdditions.h"
+#import "OGString.h"
+#import "OGMutableString.h"
