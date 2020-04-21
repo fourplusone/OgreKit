@@ -11,13 +11,13 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGRegularExpressionPrivate.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGRegularExpressionMatchPrivate.h>
-#import <OgreKit/OGRegularExpressionCapture.h>
-#import <OgreKit/OGRegularExpressionCapturePrivate.h>
-#import <OgreKit/OGString.h>
+#import "OGRegularExpression.h"
+#import "OGRegularExpressionPrivate.h"
+#import "OGRegularExpressionMatch.h"
+#import "OGRegularExpressionMatchPrivate.h"
+#import "OGRegularExpressionCapture.h"
+#import "OGRegularExpressionCapturePrivate.h"
+#import "OGString.h"
 
 
 NSString	* const OgreCaptureException = @"OGRegularExpressionCaptureException";

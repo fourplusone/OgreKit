@@ -11,8 +11,8 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/NSString_OgreKitAdditions.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
+#import "NSString_OgreKitAdditions.h"
+#import "OGRegularExpressionMatch.h"
 
 @implementation NSString (OgreKitAdditions)
 

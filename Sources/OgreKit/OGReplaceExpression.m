@@ -11,17 +11,17 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGRegularExpressionPrivate.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGRegularExpressionMatchPrivate.h>
-#import <OgreKit/OGRegularExpressionCapture.h>
-#import <OgreKit/OGReplaceExpression.h>
-#import <OgreKit/OGReplaceExpressionPrivate.h>
-#import <OgreKit/OGString.h>
-#import <OgreKit/OGMutableString.h>
-#import <OgreKit/OGPlainString.h>
-#import <OgreKit/OGAttributedString.h>
+#import "OGRegularExpression.h"
+#import "OGRegularExpressionPrivate.h"
+#import "OGRegularExpressionMatch.h"
+#import "OGRegularExpressionMatchPrivate.h"
+#import "OGRegularExpressionCapture.h"
+#import "OGReplaceExpression.h"
+#import "OGReplaceExpressionPrivate.h"
+#import "OGString.h"
+#import "OGMutableString.h"
+#import "OGPlainString.h"
+#import "OGAttributedString.h"
 #import <stdlib.h>
 #import <limits.h>
 

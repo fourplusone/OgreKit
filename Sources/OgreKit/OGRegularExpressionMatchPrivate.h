@@ -12,8 +12,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGString.h>
+#import "OGRegularExpressionMatch.h"
+#import "OGString.h"
 
 @interface OGRegularExpressionMatch (Private)
 

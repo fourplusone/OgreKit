@@ -12,8 +12,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGRegularExpressionEnumerator.h>
-#import <OgreKit/OGString.h>
+#import "OGRegularExpressionEnumerator.h"
+#import "OGString.h"
 
 // aUTF16StringのUTF16文字長
 static inline unsigned Ogre_UTF16charlen(unichar *const aUTF16String)

@@ -11,7 +11,7 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/OGString.h>
+#import "OGString.h"
 
 @interface OGAttributedString : NSObject <OGStringProtocol, NSCopying, NSCoding>
 {

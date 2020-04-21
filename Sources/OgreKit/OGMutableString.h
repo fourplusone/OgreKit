@@ -12,7 +12,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGString.h>
+#import "OGString.h"
 
 @protocol OGMutableStringProtocol
 - (void)appendString:(NSString*)string;

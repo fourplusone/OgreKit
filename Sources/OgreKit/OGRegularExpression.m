@@ -19,14 +19,14 @@
 #endif
 #import <onigmo.h>
 
-#import <OgreKit/OGRegularExpressionPrivate.h>
-#import <OgreKit/OGRegularExpressionMatchPrivate.h>
-#import <OgreKit/OGRegularExpressionEnumeratorPrivate.h>
-#import <OgreKit/OGReplaceExpression.h>
-#import <OgreKit/OGString.h>
-#import <OgreKit/OGMutableString.h>
-#import <OgreKit/OGPlainString.h>
-#import <OgreKit/OGAttributedString.h>
+#import "OGRegularExpressionPrivate.h"
+#import "OGRegularExpressionMatchPrivate.h"
+#import "OGRegularExpressionEnumeratorPrivate.h"
+#import "OGReplaceExpression.h"
+#import "OGString.h"
+#import "OGMutableString.h"
+#import "OGPlainString.h"
+#import "OGAttributedString.h"
 
 /* constants */
 // compile time options:

@@ -19,10 +19,10 @@
 #endif
 #import <onigmo.h>
 
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGRegularExpressionPrivate.h>
-#import <OgreKit/OGString.h>
-#import <OgreKit/OGMutableString.h>
+#import "OGRegularExpression.h"
+#import "OGRegularExpressionPrivate.h"
+#import "OGString.h"
+#import "OGMutableString.h"
 
 OnigSyntaxType  OgrePrivatePOSIXBasicSyntax;
 OnigSyntaxType  OgrePrivatePOSIXExtendedSyntax;

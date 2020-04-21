@@ -12,7 +12,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGRegularExpression.h>
+#import "OGRegularExpression.h"
 
 @class OGRegularExpressionMatch;
 

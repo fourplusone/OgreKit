@@ -12,8 +12,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGString.h>
+#import "OGRegularExpression.h"
+#import "OGString.h"
 
 @class OGRegularExpression;
 

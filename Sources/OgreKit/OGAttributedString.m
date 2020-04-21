@@ -12,8 +12,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <OgreKit/OGAttributedString.h>
-#import <OgreKit/OGMutableAttributedString.h>
+#import "OGAttributedString.h"
+#import "OGMutableAttributedString.h"
 
 // 自身をencoding/decodingするためのkey
 static NSString * const	OgreAttributedStringKey = @"OgreAttributedString";

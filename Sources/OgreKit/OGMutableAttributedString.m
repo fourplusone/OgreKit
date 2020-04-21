@@ -11,7 +11,7 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/OGMutableAttributedString.h>
+#import "OGMutableAttributedString.h"
 #import <TargetConditionals.h>
 #if TARGET_OS_OSX
 #define APPKIT 1

@@ -12,9 +12,9 @@
  */
 
 
-#import <OgreKit/OGRegularExpressionCapture.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGRegularExpressionMatchPrivate.h>
+#import "OGRegularExpressionCapture.h"
+#import "OGRegularExpressionMatch.h"
+#import "OGRegularExpressionMatchPrivate.h"
 
 
 @interface OGRegularExpressionCapture (Private)

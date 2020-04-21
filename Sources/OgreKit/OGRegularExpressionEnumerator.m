@@ -11,13 +11,13 @@
  * Tabsize: 4
  */
 
-#import <OgreKit/OGRegularExpression.h>
-#import <OgreKit/OGRegularExpressionMatch.h>
-#import <OgreKit/OGRegularExpressionEnumerator.h>
-#import <OgreKit/OGRegularExpressionPrivate.h>
-#import <OgreKit/OGRegularExpressionMatchPrivate.h>
-#import <OgreKit/OGRegularExpressionEnumeratorPrivate.h>
-#import <OgreKit/OGString.h>
+#import "OGRegularExpression.h"
+#import "OGRegularExpressionMatch.h"
+#import "OGRegularExpressionEnumerator.h"
+#import "OGRegularExpressionPrivate.h"
+#import "OGRegularExpressionMatchPrivate.h"
+#import "OGRegularExpressionEnumeratorPrivate.h"
+#import "OGString.h"
 
 
 // 自身をencoding/decodingするためのkey
