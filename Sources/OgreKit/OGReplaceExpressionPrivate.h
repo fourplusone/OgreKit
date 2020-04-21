@@ -11,7 +11,7 @@
  * Tabsize: 4
  */
 
-@class OGReplaceExpression;
+#import "OGReplaceExpression.h"
 
 @interface OGReplaceExpression (Private)
 
